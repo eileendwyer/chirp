@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main.models import Chirp, StopWord
+from main.models import Chirp, StopWord, Profile
 
 # Register your models here.
 class ChirpAdmin(admin.ModelAdmin):
@@ -13,3 +13,7 @@ class StopWordAdmin(admin.ModelAdmin):
     search_fields = ["word"]
 # list display negates need for __str__
 admin.site.register(StopWord, StopWordAdmin)
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ["favorite_bird"]
+    search_fields = ["favorite_bird"]
