@@ -17,3 +17,5 @@ admin.site.register(StopWord, StopWordAdmin)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ["favorite_bird"]
     search_fields = ["favorite_bird"]
+
+admin.site.register(Profile, ProfileAdmin)
