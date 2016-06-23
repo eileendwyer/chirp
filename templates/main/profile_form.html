@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
-{% block content %}
-  <form class="" action="" method="post">
+{% block content
+  <h1>Your Profile: </h1>
+
+
+  <img src="{{object.photo_url}}" alt=""/>
+
+  <form class="" action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p}}
+
     <input class= "btn btn-success" type="submit" name="submit_button" value="Update Profile">
-
     </form>
-
-  </form>
 
 {% endblock %}

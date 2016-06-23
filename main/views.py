@@ -41,7 +41,7 @@ class ChirpDetailView(DetailView):
 
 
 class ProfileUpdateView(UpdateView):
-    fields = ["favorite_bird"]
+    fields = ["favorite_bird", "profile_photo"]
     success_url = reverse_lazy("profile_update_view") #dont use /accounts/profile here
 
     #def get_queryset(self):

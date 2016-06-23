@@ -19,16 +19,26 @@ class Profile(models.Model):
     user = models.OneToOneField("auth.user")
     # at this state model doens't do anything just would exist if migrate
     favorite_bird = models.CharField(max_length=100, null=True)
+    photo = models.ImageField(upload_to="profile_photo", null=True, blank=True, verbose_name="profile_photo")
+    # verbose_name allows to display photo
 
-@receiver(post_save, sender=StopWord)  #- this is signal receiver fxn
-def say_hello(**kwargs):
-    print("hello world!")
+    @property
+    def photo_url(self):
+        if self.photo:
+            # print(self.photo.url)
+            return self.photo.url
+        return # some url to photo
 
-@receiver(post_save, sender="auth.User")
-def create_user_profile(**kwargs):
-    created = kwargs.get("created")
-    instance = kwargs.get("instance") # add as many fields as want on profile
-    if created:
-        Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=StopWord)  #- this is signal receiver fxn
+    def say_hello(**kwargs):
+        print("hello world!")
+
+    @receiver(post_save, sender="auth.User")
+    def create_user_profile(**kwargs):
+        created = kwargs.get("created")
+        instance = kwargs.get("instance") # add as many fields as want on profile
+        if created:
+            Profile.objects.create(user=instance)
 
 ## - could calculate the avg for movie rating here in models.py
